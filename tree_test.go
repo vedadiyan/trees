@@ -8,12 +8,8 @@ import (
 
 func TestSave(t *testing.T) {
 	links := Links[string]{
-		{"7", "4"},
-		{"4", "5"},
-		{"5", "8"},
-		{"8", "9"},
-		{"4", "6"},
-		{"5", "10"},
+		{"A", "B"},
+		{"A", "C"},
 	}
 
 	trees, err := Sort(links)

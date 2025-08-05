@@ -1,43 +1,14 @@
 [
 	{
-		"Src": "7",
+		"Src": "A",
 		"Dest": [
 			{
-				"Src": "4",
-				"Dest": [
-					{
-						"Src": "5",
-						"Dest": [
-							{
-								"Src": "8",
-								"Dest": [
-									{
-										"Src": "9",
-										"Dest": null
-									}
-								]
-							}
-						]
-					},
-					{
-						"Src": "5",
-						"Dest": [
-							{
-								"Src": "10",
-								"Dest": null
-							}
-						]
-					}
-				]
+				"Src": "B",
+				"Dest": null
 			},
 			{
-				"Src": "4",
-				"Dest": [
-					{
-						"Src": "6",
-						"Dest": null
-					}
-				]
+				"Src": "C",
+				"Dest": null
 			}
 		]
 	}

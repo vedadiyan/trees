@@ -22,8 +22,21 @@ func Sort[T comparable](links Links[T]) ([]*SortedTree[T], error) {
 		return nil, fmt.Errorf("no source found")
 	}
 	out := make([]*SortedTree[T], 0)
-	for _, src := range sources {
-		out = append(out, links.follow(src))
+	c := make(map[T][]*SortedTree[T])
+	for _, next := range sources {
+		if _, ok := c[next.Src]; !ok {
+			c[next.Src] = make([]*SortedTree[T], 0)
+		}
+		c[next.Src] = append(c[next.Src], links.follow(next))
+	}
+	for key, values := range c {
+		aggregatedNode := new(SortedTree[T])
+		aggregatedNode.Src = key
+		aggregatedNode.Dest = make([]*SortedTree[T], 0)
+		for _, value := range values {
+			aggregatedNode.Dest = append(aggregatedNode.Dest, value.Dest...)
+		}
+		out = append(out, aggregatedNode)
 	}
 	return out, nil
 }
@@ -35,8 +48,21 @@ func (l Links[T]) follow(src Link[T]) *SortedTree[T] {
 	out.Src = src.Src
 	nextLinks := filteredLinks.next(src)
 	if len(nextLinks) != 0 {
+		c := make(map[T][]*SortedTree[T])
 		for _, next := range nextLinks {
-			out.Dest = append(out.Dest, filteredLinks.follow(next))
+			if _, ok := c[next.Src]; !ok {
+				c[next.Src] = make([]*SortedTree[T], 0)
+			}
+			c[next.Src] = append(c[next.Src], filteredLinks.follow(next))
+		}
+		for key, values := range c {
+			aggregatedNode := new(SortedTree[T])
+			aggregatedNode.Src = key
+			aggregatedNode.Dest = make([]*SortedTree[T], 0)
+			for _, value := range values {
+				aggregatedNode.Dest = append(aggregatedNode.Dest, value.Dest...)
+			}
+			out.Dest = append(out.Dest, aggregatedNode)
 		}
 		return out
 	}
