@@ -11,8 +11,8 @@ type (
 	Links[T comparable] []Link[T]
 
 	SortedTree[T comparable] struct {
-		Link[T]
-		Descendants []*SortedTree[T]
+		Src  T
+		Dest []*SortedTree[T]
 	}
 )
 
@@ -31,13 +31,18 @@ func Sort[T comparable](links Links[T]) ([]*SortedTree[T], error) {
 func (l Links[T]) follow(src Link[T]) *SortedTree[T] {
 	filteredLinks := l.filter(src)
 	var out = new(SortedTree[T])
-	out.Descendants = make([]*SortedTree[T], 0)
+	out.Dest = make([]*SortedTree[T], 0)
 	out.Src = src.Src
-	out.Dest = src.Dest
 	nextLinks := filteredLinks.next(src)
-	for _, next := range nextLinks {
-		out.Descendants = append(out.Descendants, filteredLinks.follow(next))
+	if len(nextLinks) != 0 {
+		for _, next := range nextLinks {
+			out.Dest = append(out.Dest, filteredLinks.follow(next))
+		}
+		return out
 	}
+	lastNode := new(SortedTree[T])
+	lastNode.Src = src.Dest
+	out.Dest = append(out.Dest, lastNode)
 	return out
 }
 
