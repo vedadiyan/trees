@@ -4,11 +4,21 @@
 		"Dest": [
 			{
 				"Src": "B",
-				"Dest": null
+				"Dest": [
+					{
+						"Src": "D",
+						"Dest": null
+					}
+				]
 			},
 			{
 				"Src": "C",
-				"Dest": null
+				"Dest": [
+					{
+						"Src": "D",
+						"Dest": null
+					}
+				]
 			}
 		]
 	}
