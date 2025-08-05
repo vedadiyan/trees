@@ -87,7 +87,6 @@ func Test_filter(t *testing.T) {
 	}
 }
 
-// helper
 func expectTreeStructure(t *testing.T, node *SortedTree[string], expected []*SortedTree[string]) {
 	if len(node.Descendants) != len(expected) {
 		t.Fatalf("expected %d children, got %d", len(expected), len(node.Descendants))
