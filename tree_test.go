@@ -35,7 +35,7 @@ func TestSort_Success(t *testing.T) {
 func TestSort_NoSource(t *testing.T) {
 	links := Links[string]{
 		{"a", "b"},
-		{"b", "a"}, // cycle
+		{"b", "a"},
 	}
 
 	_, err := Sort(links)
