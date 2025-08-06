@@ -14,7 +14,7 @@ func TestSave(t *testing.T) {
 		{Src: "C", Dest: "D"},
 	}
 
-	trees, err := Sort(links)
+	trees, err := NewForest(links)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}

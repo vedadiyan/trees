@@ -1,22 +1,22 @@
 [
 	{
-		"Src": "A",
-		"Dest": [
+		"Node": "A",
+		"Next": [
 			{
-				"Src": "B",
-				"Dest": [
+				"Node": "B",
+				"Next": [
 					{
-						"Src": "D",
-						"Dest": null
+						"Node": "D",
+						"Next": null
 					}
 				]
 			},
 			{
-				"Src": "C",
-				"Dest": [
+				"Node": "C",
+				"Next": [
 					{
-						"Src": "D",
-						"Dest": null
+						"Node": "D",
+						"Next": null
 					}
 				]
 			}
